@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace saper
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form //change1
     {
         public const int mapSize = 8;
         public const int cellSize = 50;
