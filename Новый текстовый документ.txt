@@ -1,0 +1,14 @@
+хочу закинуть в облако: 
+git init
+git add .
+git commit -m "че сделала"
+git push
+
+
+
+
+
+хочу стащить с облака:
+git init
+git stash
+git pull
