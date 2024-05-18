@@ -75,11 +75,8 @@ namespace saper.Controllers
         private static void OnButtonPressedMouse(object sender, MouseEventArgs e)
         {
             Button pressedButton = sender as Button;
-<<<<<<< HEAD
             switch (e.Button.ToString())
-=======
-            switch(e.Button.ToString())
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
+            switch (e.Button.ToString())
             {
                 case "Right":
                     OnRightButtonPressed(pressedButton);
@@ -157,13 +154,8 @@ namespace saper.Controllers
     {
         Image image = new Bitmap(cellSize, cellSize);
         Graphics g = Graphics.FromImage(image);
-<<<<<<< HEAD
         g.DrawImage(spriteSet, new Rectangle(new Point(0, 0), new Size(cellSize, cellSize), 0 + 32 * xPos, 0 + 32 * yPos, 33, 33, GraphicsUnit.Pixel));
-
-=======
-            g.DrawImage(spriteSet, new Rectangle(new Point(0, 0), new Size(cellSize, cellSize), 0+32*xPos, 0+32*yPos, 33 ,33, GraphicsUnit.Pixel));
-            
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
+        g.DrawImage(spriteSet, new Rectangle(new Point(0, 0), new Size(cellSize, cellSize), 0 + 32 * xPos, 0 + 32 * yPos, 33, 33, GraphicsUnit.Pixel));
         return image;
     }
 
@@ -171,32 +163,23 @@ namespace saper.Controllers
     {
         Random r = new Random();
         int number = r.Next(7, 15);
-
-<<<<<<< HEAD
         for (int i = 0; i < number; i++)
-=======
-            for(int i = 0; i < number; i++)
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
-        {
-            int posI = r.Next(0, mapSize - 1);
-            int posJ = r.Next(0, mapSize - 1);
-
-<<<<<<< HEAD
-            while (map[posI, posJ] == -1 || (Math.Abs(posI - firstCoord.Y) <= 1 && Math.Abs(posJ - firstCoord.X) <= 1))
-=======
-                while (map[posI, posJ] == -1 || (Math.Abs(posI-firstCoord.Y)<=1 && Math.Abs(posJ - firstCoord.X) <= 1))
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
+            for (int i = 0; i < number; i++)
             {
-                posI = r.Next(0, mapSize - 1);
-                posJ = r.Next(0, mapSize - 1);
-            }
+                int posI = r.Next(0, mapSize - 1);
+                int posJ = r.Next(0, mapSize - 1);
+                while (map[posI, posJ] == -1 || (Math.Abs(posI - firstCoord.Y) <= 1 && Math.Abs(posJ - firstCoord.X) <= 1))
+                    while (map[posI, posJ] == -1 || (Math.Abs(posI - firstCoord.Y) <= 1 && Math.Abs(posJ - firstCoord.X) <= 1))
+                    {
+                        posI = r.Next(0, mapSize - 1);
+                        posJ = r.Next(0, mapSize - 1);
+                    }
 
-            map[posI, posJ] = -1;
-        }
+                map[posI, posJ] = -1;
+            }
     }
     private static void CountCellBomb()
     {
-<<<<<<< HEAD
         for (int i = 0; i < mapSize; i++)
         {
             for (int j = 0; j < mapSize; j++)
@@ -206,110 +189,104 @@ namespace saper.Controllers
                     for (int k = i - 1; k < i + 2; k++)
                     {
                         for (int l = j - 1; l < j + 2; l++)
-=======
-            for(int i = 0; i <mapSize; i++)
-            {
-                for(int  j = 0; j <mapSize; j++)
-                {
-                    if (map[i, j] == -1)
-                    {
-                        for(int k = i-1; k < i+2; k++)
-                        {
-                            for(int  l = j-1; l < j+2; l++)
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
-                        {
-                            if (!IsInBorder(k, l) || map[k, l] == -1)
-                                continue;
-                            map[k, l] = map[k, l] + 1;
+                            for (int i = 0; i < mapSize; i++)
+                            {
+                                for (int j = 0; j < mapSize; j++)
+                                {
+                                    if (map[i, j] == -1)
+                                    {
+                                        for (int k = i - 1; k < i + 2; k++)
+                                        {
+                                            for (int l = j - 1; l < j + 2; l++)
+                                            {
+                                                if (!IsInBorder(k, l) || map[k, l] == -1)
+                                                    continue;
+                                                map[k, l] = map[k, l] + 1;
 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                    }
+                    private static bool IsInBorder(int i, int j)
+                    {
+                        if (i < 0 || j < 0 || j > mapSize - 1 || i > mapSize - 1)
+                            if (i < 0 || j < 0 || j > mapSize - 1 || i > mapSize - 1)
+                            {
+                                return false;
+                            }
+                        return true;
+                    }
+                    private static void OpenCell(int i, int j)
+                    {
+                        buttons[i, j].Enabled = false;
+
+                        switch (map[i, j])
+                        {
+                            case 1:
+                                buttons[i, j].Image = FindNeededImage(1, 0);
+                                break;
+                            case 2:
+                                buttons[i, j].Image = FindNeededImage(2, 0);
+                                break;
+                            case 3:
+                                buttons[i, j].Image = FindNeededImage(3, 0);
+                                break;
+                            case 4:
+                                buttons[i, j].Image = FindNeededImage(4, 0);
+                                break;
+                            case 5:
+                                buttons[i, j].Image = FindNeededImage(0, 1);
+                                break;
+                            case 6:
+                                buttons[i, j].Image = FindNeededImage(1, 1);
+                                break;
+                            case 7:
+                                buttons[i, j].Image = FindNeededImage(2, 1);
+                                break;
+                            case 8:
+                                buttons[i, j].Image = FindNeededImage(3, 1);
+                                break;
+                            case -1:
+                                buttons[i, j].Image = FindNeededImage(1, 2);
+                                break;
+                            case 0:
+                                buttons[i, j].Image = FindNeededImage(0, 0);
+                                break;
                         }
+                    }
+                    private static void OpenCells(int i, int j)
+                    {
+                        OpenCell(i, j);
+
+                        if (map[i, j] > 0)
+                            return;
+
+
+                        for (int k = i - 1; k < i + 2; k++)
+                        {
+                            for (int l = j - 1; l < j + 2; l++)
+                            {
+                                if (!IsInBorder(k, l))
+                                    continue;
+                                if (!buttons[k, l].Enabled)
+                                    continue;
+                                if (map[k, l] == 0)
+                                    OpenCells(k, l);
+                                else if (map[k, l] > 0)
+                                    OpenCell(k, l);
+                            }
+                        }
+                    }
+
+                    private static bool IsInBorder(int i, int j)
+                    {
+                        if (i < 0 || j < 0 || j > mapSize - 1 || i > mapSize - 1)
+                        {
+                            return false;
+                        }
+                        return true;
                     }
                 }
             }
-        }
-    }
-    private static bool IsInBorder(int i, int j)
-    {
-<<<<<<< HEAD
-        if (i < 0 || j < 0 || j > mapSize - 1 || i > mapSize - 1)
-=======
-            if(i<0 || j<0 || j>mapSize-1 || i > mapSize - 1)
->>>>>>> fe57b62576318b8f6696c7f235106cadb584eb08
-        {
-            return false;
-        }
-        return true;
-    }
-
-    private static void OpenCell(int i, int j)
-    {
-<<<<<<< HEAD
-        buttons[i, j].Enabled = false;
-
-        switch (map[i, j])
-        {
-            case 1:
-                buttons[i, j].Image = FindNeededImage(1, 0);
-                break;
-            case 2:
-                buttons[i, j].Image = FindNeededImage(2, 0);
-                break;
-            case 3:
-                buttons[i, j].Image = FindNeededImage(3, 0);
-                break;
-            case 4:
-                buttons[i, j].Image = FindNeededImage(4, 0);
-                break;
-            case 5:
-                buttons[i, j].Image = FindNeededImage(0, 1);
-                break;
-            case 6:
-                buttons[i, j].Image = FindNeededImage(1, 1);
-                break;
-            case 7:
-                buttons[i, j].Image = FindNeededImage(2, 1);
-                break;
-            case 8:
-                buttons[i, j].Image = FindNeededImage(3, 1);
-                break;
-            case -1:
-                buttons[i, j].Image = FindNeededImage(1, 2);
-                break;
-            case 0:
-                buttons[i, j].Image = FindNeededImage(0, 0);
-                break;
-        }
-    }
-    private static void OpenCells(int i, int j)
-    {
-        OpenCell(i, j);
-
-        if (map[i, j] > 0)
-            return;
-
-
-        for (int k = i - 1; k < i + 2; k++)
-        {
-            for (int l = j - 1; l < j + 2; l++)
-            {
-                if (!IsInBorder(k, l))
-                    continue;
-                if (!buttons[k, l].Enabled)
-                    continue;
-                if (map[k, l] == 0)
-                    OpenCells(k, l);
-                else if (map[k, l] > 0)
-                    OpenCell(k, l);
-            }
-        }
-    }
-    private static bool IsInBorder(int i, int j)
-    {
-        if (i < 0 || j < 0 || j > mapSize - 1 || i > mapSize - 1)
-        {
-            return false;
-        }
-        return true;
-    }
-}
-}
